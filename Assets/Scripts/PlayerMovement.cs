@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode right;
 
     public MazeManager mazeManager;
-    public CollisionPlayers collisionPlayers;
+    public GameManager gameManager;
 
     void Start()
     {
@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        if (collisionPlayers.isGameOver == true)
+        if (gameManager.GetIsGameOver() == true)
         {
             return;
         }
@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
         if (mazeManager.HasWall(transform.position + direction) == false)
         {
             transform.position += direction;
-            collisionPlayers.CheckCollision();
+            gameManager.CheckCollision();
         }
     }
 }
