@@ -5,6 +5,7 @@ using TMPro;
 
 public class Cronometro : MonoBehaviour
 {
+    public GameManager gameManager;
     public float time;
     private float intervalo = 0.1f;
     public TMP_Text tempoText;
@@ -17,6 +18,10 @@ public class Cronometro : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameManager.GetIsGameOver() == true)
+        {
+            return;
+        }
         if (time <= 0.0f)
         {
             return;
@@ -26,6 +31,7 @@ public class Cronometro : MonoBehaviour
         {
             time = 0.0f;
         }
+
 
         int min = Mathf.FloorToInt(time / 60);
         float sec = time - (min * 60);

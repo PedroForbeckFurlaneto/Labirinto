@@ -9,7 +9,7 @@ public class EnemyMoviment : MonoBehaviour
     private List<Vector3> directions = new List<Vector3> { Vector3.up, Vector3.down, Vector3.right, Vector3.left };
 
     public MazeManager mazeManager;
-    public CollisionPlayers collisionPlayers;
+    public GameManager gameManager;
     private Vector3 lastMove;
     void Start()
     {
@@ -17,7 +17,7 @@ public class EnemyMoviment : MonoBehaviour
     }
     void Update()
     {
-        if (collisionPlayers.isGameOver == true)
+        if (gameManager.GetIsGameOver() == true)
         {
             return;
         }
@@ -25,10 +25,10 @@ public class EnemyMoviment : MonoBehaviour
         if (time >= moveInterval)
         {
             time = 0f;
-            Move();
+            CheckMove();
         }
     }
-    private void Move()
+    private void CheckMove()
         // Para o inimigo evitar voltar o ultimo movimento realizado.
     {
         Vector3 oppositeLastMove;
@@ -56,9 +56,7 @@ public class EnemyMoviment : MonoBehaviour
             Vector3 direction = directionsTemp[Random.Range(0, directionsTemp.Count)];
             if (mazeManager.HasWall(transform.position + direction) == false)
             {
-                lastMove = direction;
-                transform.position += direction;
-                collisionPlayers.CheckCollision();
+                Move(direction);
                 return;
             }
             else
@@ -68,9 +66,15 @@ public class EnemyMoviment : MonoBehaviour
         }
         if (mazeManager.HasWall(transform.position + oppositeLastMove) == false)
         {
-            transform.position += oppositeLastMove;
-            collisionPlayers.CheckCollision();
+            Move(oppositeLastMove);
             return;
+        }
+
+        void Move(Vector3 direction)
+        {
+            lastMove = direction;
+            transform.position += direction;
+            gameManager.CheckCollision();
         }
     }
 }
