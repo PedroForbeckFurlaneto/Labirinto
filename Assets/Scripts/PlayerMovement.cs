@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     {
 
     }
+
     void Update()
     {
         if (gameManager.GetIsGameOver() == true)

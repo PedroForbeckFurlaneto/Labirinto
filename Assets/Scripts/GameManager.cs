@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void GameOver()
+    public void GameOver()
     {
         isGameOver = true;
         gameOverObject.active = true;
