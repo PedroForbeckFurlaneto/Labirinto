@@ -8,8 +8,7 @@ public class EnemyMoviment : MonoBehaviour
     private float time = 0f;
     private List<Vector3> directions = new List<Vector3> { Vector3.up, Vector3.down, Vector3.right, Vector3.left };
 
-    public MazeManager mazeManager;
-    public GameManager gameManager;
+    public References references;
     private Vector3 lastMove;
     void Start()
     {
@@ -17,7 +16,11 @@ public class EnemyMoviment : MonoBehaviour
     }
     void Update()
     {
-        if (gameManager.GetIsGameOver() == true)
+        //if (gameManager.stopGame)
+        //{
+        //    return;
+        //}
+        if (references.gameManager.GetIsGameOver() == true)
         {
             return;
         }
@@ -54,7 +57,7 @@ public class EnemyMoviment : MonoBehaviour
         for (int i = 0; i < directions.Count - 1; i++)
         {
             Vector3 direction = directionsTemp[Random.Range(0, directionsTemp.Count)];
-            if (mazeManager.HasWall(transform.position + direction) == false)
+            if (references.mazeManager.HasWall(transform.position + direction) == false)
             {
                 Move(direction);
                 return;
@@ -64,7 +67,7 @@ public class EnemyMoviment : MonoBehaviour
                 directionsTemp.Remove(direction);
             }
         }
-        if (mazeManager.HasWall(transform.position + oppositeLastMove) == false)
+        if (references.mazeManager.HasWall(transform.position + oppositeLastMove) == false)
         {
             Move(oppositeLastMove);
             return;
@@ -74,7 +77,7 @@ public class EnemyMoviment : MonoBehaviour
         {
             lastMove = direction;
             transform.position += direction;
-            gameManager.CheckCollision();
+            references.gameManager.CheckCollision();
         }
     }
 }

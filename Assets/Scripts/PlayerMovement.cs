@@ -10,8 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode left;
     public KeyCode right;
 
-    public MazeManager mazeManager;
-    public GameManager gameManager;
+    public References references;
 
     void Start()
     {
@@ -20,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (gameManager.GetIsGameOver() == true)
+        if (references.gameManager.GetIsGameOver() == true)
         {
             return;
         }
@@ -43,10 +42,10 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Move (Vector3 direction) 
     {
-        if (mazeManager.HasWall(transform.position + direction) == false)
+        if (references.mazeManager.HasWall(transform.position + direction) == false)
         {
             transform.position += direction;
-            gameManager.CheckCollision();
+            references.gameManager.CheckCollision();
         }
     }
 }

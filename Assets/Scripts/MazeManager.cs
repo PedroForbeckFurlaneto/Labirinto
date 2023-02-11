@@ -11,9 +11,6 @@ public class MazeManager : MonoBehaviour
     public GameObject enemyObject;
     void Start()
     {
-        player1Object.active = true;
-        player2Objerct.active = true;
-        enemyObject.active = true;
         for (int x = 0; x < mazeImage.width; x++)
         {
             for (int y = 0; y < mazeImage.height; y++)
