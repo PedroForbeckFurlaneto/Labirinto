@@ -101,10 +101,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6659815ec4266454aa48aa1390b5a708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 5
   up: 273
   down: 274
   left: 276
   right: 275
+  status: 1
   references: {fileID: 4388098536039428138}
 --- !u!114 &4388098536039428138
 MonoBehaviour:
