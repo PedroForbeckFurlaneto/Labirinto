@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 6478348653369009868}
   - component: {fileID: 6478348653369009871}
   - component: {fileID: 7538469622405624718}
+  - component: {fileID: 9062548301687025331}
+  - component: {fileID: 1211570837731177656}
+  - component: {fileID: 8019259430529326467}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Untagged
@@ -26,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6478348653369009870}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.2690945, y: 6.224571, z: 0.1261335}
   m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
@@ -98,10 +101,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6659815ec4266454aa48aa1390b5a708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 5
   up: 119
   down: 115
   left: 97
   right: 100
+  status: 1
   references: {fileID: 7538469622405624718}
 --- !u!114 &7538469622405624718
 MonoBehaviour:
@@ -117,3 +122,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mazeManager: {fileID: 0}
   gameManager: {fileID: 0}
+--- !u!50 &9062548301687025331
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6478348653369009870}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &1211570837731177656
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6478348653369009870}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.49999997
+--- !u!114 &8019259430529326467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6478348653369009870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a7567dfe38fdee4e9ead2c376205df0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

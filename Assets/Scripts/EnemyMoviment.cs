@@ -77,7 +77,6 @@ public class EnemyMoviment : MonoBehaviour
         {
             lastMove = direction;
             transform.position += direction;
-            references.gameManager.CheckCollision();
         }
     }
 }

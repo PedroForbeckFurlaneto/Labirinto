@@ -18,8 +18,6 @@ public class GameManager : MonoBehaviour
     public Transform player2Position;
     public Transform enemyPosition;
 
-    public int gamemode = 0;
-
     public bool stopGame = false;
 
     bool isGameOver = false;
@@ -27,13 +25,14 @@ public class GameManager : MonoBehaviour
     {
         gameOverObject.active = false;
         CharacterInstantiate(player1Model, player1Position.position, playersTransforms);
-        if (gamemode == 0)
+        switch (MenuManager.shared.gameMode)
         {
-            CharacterInstantiate(player2Model, player2Position.position, playersTransforms);
-        }
-        else
-        {
-            CharacterInstantiate(enemyModel, enemyPosition.position, enemiesTransforms);
+            case GameMode.SinglePlayer:
+                CharacterInstantiate(enemyModel, enemyPosition.position, enemiesTransforms);
+                break;
+            case GameMode.MultiPlayer:
+                CharacterInstantiate(player2Model, player2Position.position, playersTransforms);
+                break;
         }
     }
 
@@ -44,37 +43,11 @@ public class GameManager : MonoBehaviour
         references.mazeManager = mazeManager;
         playersTransforms.Add(references.transform);
     }
-
-    public void CheckCollision()
+    public void PlayerCollision()
     {
-        for (int i = 0; i < playersTransforms.Count - 1; i++)
-        {
-            for (int j = i + 1; j < playersTransforms.Count; j++)
-            {
-                Vector3 iPosition = playersTransforms[i].position;
-                Vector3 jPosition = playersTransforms[j].position;
-                if (iPosition == jPosition)
-                {
-                    GameOver();
-                    return;
-                }
-            }
-        }
-        foreach (Transform playerTransform in playersTransforms)
-        {
-            foreach (Transform enemyTransform in enemiesTransforms)
-            {
-                if (playerTransform.position == enemyTransform.position)
-                {
-                    GameOver();
-                    return;
-                }
-            }
-        }
+        GameOver();
     }
-
-
-    public void GameOver()
+    private void GameOver()
     {
         isGameOver = true;
         gameOverObject.active = true;
